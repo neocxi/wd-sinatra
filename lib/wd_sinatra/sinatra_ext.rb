@@ -71,7 +71,7 @@ class WeaselDiesel
         end
         @params = (processed_params || app.params)
         @params = params_preprocessor_hook(@params) if self.respond_to?(:params_preprocessor_hook)
-        @params = ParamsVerification.validate!(@params, service.defined_params)
+        @params = ParamsVerification.validate!(@params, service.defined_params, false)
         @params = params_postprocessor_hook(@params) if self.respond_to?(:params_postprocessor_hook)
       rescue ParamsVerification::ParamError => e
         LOGGER.error e.message
